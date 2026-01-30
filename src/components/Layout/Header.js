@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '../../services/supabaseClient';
 import toast from 'react-hot-toast';
-
-// IMPORTACIÓN DEL LOGO: Esto asegura que Webpack lo procese correctamente para Vercel
-import logoImg from '../../assets/LogoPT.png'; 
+import logoImg from '../../assets/LogoPT.png';
 
 const Header = ({
   profile,

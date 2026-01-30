@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { supabase } from '../services/supabaseClient';
-import logo from '../assets/LogoPT.png'; // Importación correcta
+import logo from '../assets/LogoPT.png';
 import toast from 'react-hot-toast';
 
 const Auth = () => {
