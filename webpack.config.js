@@ -1,23 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack'); // 1. IMPORTAR EL PLUGIN
 
 module.exports = {
-  // 1. Entrada: donde arranca la app
   entry: './src/index.js',
-
-  // 2. Salida: donde se guarda el bundle final
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.[contenthash].js', // El hash ayuda con el caché del navegador
-    clean: true, // Limpia la carpeta dist en cada build
+    filename: 'bundle.[contenthash].js',
+    clean: true,
   },
-
-  // 3. Extensiones que Webpack debe reconocer
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-
-  // 4. Reglas de transformación (Loaders)
   module: {
     rules: [
       {
@@ -29,19 +23,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'], // Para poder importar archivos CSS en JS
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
-
-  // 5. Plugins adicionales
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html', // Usa nuestro HTML como base
+      template: './public/index.html',
     }),
+    new Dotenv(), // 2. ACTIVAR EL PLUGIN PARA LEER EL .ENV
   ],
-
-  // 6. Servidor de desarrollo (Estilo Vite)
   devServer: {
     port: 3000,
     hot: true,
