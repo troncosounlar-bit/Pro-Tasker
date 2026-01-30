@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '../../services/supabaseClient';
 import toast from 'react-hot-toast';
 
+// IMPORTACIÓN DEL LOGO: Esto asegura que Webpack lo procese correctamente para Vercel
+import logoImg from '../../assets/LogoPT.png'; 
+
 const Header = ({
   profile,
   onSignOut,
@@ -104,7 +107,7 @@ const Header = ({
           phone: formData.phone,
           address: formData.address,
           avatar_url: formData.avatar_url,
-          last_sign_in_at: new Date().toISOString() // Actualizamos actividad al guardar
+          last_sign_in_at: new Date().toISOString()
         })
         .eq('id', profile.id);
 
@@ -133,7 +136,8 @@ const Header = ({
       </style>
 
       <div style={styles.logoContainer}>
-        <img src="/LogoPT.png" alt="Pro-Tasker Logo" style={styles.logoImg} />
+        {/* USAMOS LA VARIABLE IMPORTADA logoImg EN LUGAR DE LA RUTA ESTRÁTICA */}
+        <img src={logoImg} alt="Pro-Tasker Logo" style={styles.logoImg} />
       </div>
 
       {profile?.role === 'Admin' && (
@@ -294,7 +298,6 @@ const Header = ({
   );
 };
 
-// ... (Los estilos se mantienen igual a tu versión original ya que están perfectos)
 const styles = {
     header: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 40px', height: '80px', background: 'white', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', position: 'sticky', top: 0, zIndex: 1000, fontFamily: "'Inter', sans-serif" },
     logoContainer: { width: '220px', display: 'flex', alignItems: 'center' },

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { supabase } from '../services/supabaseClient';
+import logo from '../assets/LogoPT.png'; // Importación correcta
 import toast from 'react-hot-toast';
 
 const Auth = () => {
@@ -34,14 +35,13 @@ const Auth = () => {
         if (error) throw error;
         
         if (data.user) {
-          // Actualizamos la tabla profiles con la info completa inicial
           await supabase.from('profiles').insert([
             { 
               id: data.user.id, 
               full_name: formData.fullName, 
               role: formData.role,
               email: formData.email,
-              last_sign_in_at: new Date().toISOString() // Seteamos la primera conexión
+              last_sign_in_at: new Date().toISOString()
             }
           ]);
           toast.success('Cuenta creada. Revisa tu email para confirmar.');
@@ -77,7 +77,8 @@ const Auth = () => {
       <div style={{ ...styles.authCard, opacity: fade ? 1 : 0 }}>
         
         <div style={styles.logoWrapper}>
-          <img src="/LogoPT.png" alt="Logo" style={styles.logoImgAuth} />
+          {/* CAMBIO CLAVE: Usamos la variable 'logo' importada */}
+          <img src={logo} alt="Pro-Tasker Logo" style={styles.logoImgAuth} />
         </div>
 
         <form onSubmit={handleAuth} style={styles.form}>
@@ -158,7 +159,6 @@ const Auth = () => {
   );
 };
 
-// ... (Los estilos se mantienen igual que en tu versión anterior)
 const styles = {
   container: { 
     display: 'flex', justifyContent: 'center', alignItems: 'center', 
