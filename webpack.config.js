@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack'); // 1. IMPORTAR EL PLUGIN
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -32,9 +32,9 @@ module.exports = {
       template: './public/index.html',
     }),
     new Dotenv({
-      path: './.env',    // Indica la ruta de tu archivo local
-      systemvars: true,  // ¡CLAVE! Permite usar las variables que cargaste en el panel de Vercel
-      silent: true       // Evita que el build falle si no encuentra el archivo .env físico
+      path: './.env',    // Busca el archivo localmente si existe
+      systemvars: true,  // Carga las variables de entorno del sistema (Vercel)
+      silent: true       // No lanza error si el archivo .env no existe
     }), 
   ],
   devServer: {
@@ -42,4 +42,4 @@ module.exports = {
     hot: true,
     open: true,
   },
-}
+};
