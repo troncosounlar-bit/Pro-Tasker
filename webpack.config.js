@@ -31,7 +31,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    new Dotenv(), // 2. ACTIVAR EL PLUGIN PARA LEER EL .ENV
+    new Dotenv({
+      path: './.env',    // Indica la ruta de tu archivo local
+      systemvars: true,  // ¡CLAVE! Permite usar las variables que cargaste en el panel de Vercel
+      silent: true       // Evita que el build falle si no encuentra el archivo .env físico
+    }), 
   ],
   devServer: {
     port: 3000,
